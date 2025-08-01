@@ -29,30 +29,38 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 h1 {
-  font-size: 3.2em;
+  padding-top: 2%;
+  font-family: 'National Park', sans-serif;
+  font-size: 3.7em;
   line-height: 1.1;
+  color: #000;
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-weight: 600;
   cursor: pointer;
   transition: border-color 0.25s;
+  font-family: 'National Park', serif;
+  padding-bottom: 10%;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #185d51;
 }
 button:focus,
 button:focus-visible {
@@ -64,10 +72,10 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -81,4 +89,68 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* National Park */
+@font-face {
+  font-family: 'National Park';
+  src: url('./assets/fonts/NationalPark-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'National Park';
+  src: url('./assets/fonts/NationalPark-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'National Park';
+  src: url('./assets/fonts/NationalPark-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'National Park';
+  src: url('./assets/fonts/NationalPark-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'National Park';
+  src: url('./assets/fonts/NationalPark-ExtraBold.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+/* Piazzolla */
+@font-face {
+  font-family: 'Piazzolla';
+  src: url('./assets/fonts/Piazzolla-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Piazzolla';
+  src: url('./assets/fonts/Piazzolla-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Piazzolla';
+  src: url('./assets/fonts/Piazzolla-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Piazzolla';
+  src: url('./assets/fonts/Piazzolla-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Piazzolla';
+  src: url('./assets/fonts/Piazzolla-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
 }
