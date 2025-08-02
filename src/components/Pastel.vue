@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen bg-[#C6F0E9] flex flex-col justify-between overflow-hidden">
+  <div class="h-screen w-screen bg-[#bcf1e7] flex flex-col justify-between overflow-hidden">
     <!-- Encabezado -->
     <header class="pt-12 px-6 text-center">
       <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-[#000000]">
@@ -11,23 +11,38 @@
     <main class="flex-grow flex items-center justify-center">
       <div class="relative">
         <!-- Plato base -->
-        <div class="w-80 h-6 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full shadow-xl absolute -bottom-3 left-1/2 transform -translate-x-1/2 opacity-60"></div>
+        <div class="w-72 h-6 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full shadow-xl absolute -bottom-3 left-1/2 transform -translate-x-1/2 opacity-60"></div>
         
         <!-- Cuerpo del pastel -->
-        <div class="w-72 h-32 bg-gradient-to-b bg-[#D9D9D9] shadow-2xl relative rounded-2xl">
+        <div class="w-60 h-32 bg-gradient-to-b bg-[#D9D9D9] shadow-2xl relative rounded-2xl">
           <!-- Textura del pastel -->
           <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-2xl"></div>
         </div>
 
         <!-- Frosting superior -->
         <div class="absolute -top-2 left-0 right-0">
-          <div class="w-72 h-6 bg-gradient-to-b bg-[#966969] relative rounded-t-2xl">
+          <div class="w-75 h-12 bg-gradient-to-b bg-[#966969] relative rounded-t-2xl">
+            <!-- Sprinkles -->
+            <div class="absolute inset-0 pointer-events-none">
+              <div class="w-1 h-1 bg-blue-400 rounded-full absolute top-3 left-6"></div>
+              <div class="w-1 h-1 bg-yellow-300 rounded-full absolute top-4 left-20"></div>
+              <div class="w-1 h-1 bg-red-400 rounded-full absolute top-2 left-32"></div>
+              <div class="w-1 h-1 bg-green-300 rounded-full absolute top-5 left-10 "></div>
+              <div class="w-1 h-1 bg-blue-400 rounded-full absolute top-7 left-40 "></div>
+              <div class="w-1 h-1 bg-yellow-300 rounded-full absolute top-9 left-[20px]"></div>
+              <div class="w-1 h-1 bg-red-400 rounded-full absolute top-4 left-[180px]"></div>
+              <div class="w-1 h-1 bg-green-300 rounded-full absolute top-8 left-[100px]"></div>
+              <div class="w-1 h-1 bg-blue-400 rounded-full absolute top-7 left-[210px]"></div>
+              <div class="w-1 h-1 bg-yellow-300 rounded-full absolute top-6 left-[125px]"></div>
+              <div class="w-1 h-1 bg-red-400 rounded-full absolute top-7 left-[65px]"></div>
+              <div class="w-1 h-1 bg-green-300 rounded-full absolute top-2 left-[220px] "></div>
+            </div>
             <!-- Borde ondulado del frosting -->
             <div class="absolute -bottom-3 left-0 right-0 flex">
               <div
                 v-for="i in 8"
                 :key="i"
-                class="flex-1 h-3 bg-[#966969] rounded-b-full"
+                class="flex-1 h-5 bg-[#966969] rounded-b-full"
                 :style="{ marginLeft: i > 1 ? '-1px' : '0' }"
               ></div>
             </div>
@@ -40,7 +55,7 @@
           <div class="relative">
             <!-- Vela número 2 solo texto más grande -->
             <div class="relative w-12 h-20 flex items-center justify-center" style="animation: candle-sway 3s ease-in-out infinite;">
-              <span class="text-pink-500 font-black text-6xl drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3); animation: number-glow 2s ease-in-out infinite;">2</span>
+              <span class="text-[#e08897] font-black text-6xl drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3); animation: number-glow 2s ease-in-out infinite;">2</span>
             </div>
 
             <!-- Llama del número 2 -->
@@ -74,7 +89,7 @@
           <div class="relative">
             <!-- Vela número 0 solo texto más grande -->
             <div class="relative w-12 h-20 flex items-center justify-center" style="animation: candle-sway 3.5s ease-in-out infinite;">
-              <span class="text-pink-500 font-black text-6xl drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3); animation: number-glow 2.5s ease-in-out infinite;">0</span>
+              <span class="text-[#e08897] font-black text-6xl drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3); animation: number-glow 2.5s ease-in-out infinite;">0</span>
             </div>
 
             <!-- Llama del número 0 -->
@@ -105,12 +120,33 @@
           </div>
         </div>
       </div>
+
+      <!-- Globitos decorativos -->
+        <!-- Globitos lado izquierdo -->
+        <div class="absolute left-7 bottom-22">
+          <div v-for="(globo, index) in globosIzquierda" :key="'izq-' + index" 
+               :class="['absolute w-10 h-12 rounded-full shadow-lg transition-all duration-1000', globo.color]"
+               :style="globo.style">
+            <!-- Hilo del globo -->
+            <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-400 opacity-60"></div>
+          </div>
+        </div>
+
+        <!-- Globitos lado derecho -->
+        <div class="absolute right-7 bottom-22">
+          <div v-for="(globo, index) in globosDerecha" :key="'der-' + index" 
+               :class="['absolute w-10 h-12 rounded-full shadow-lg transition-all duration-1000', globo.color]"
+               :style="globo.style">
+            <!-- Hilo del globo -->
+            <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-400 opacity-60"></div>
+          </div>
+        </div>
     </main>
 
     <!-- Botón abajo -->
     <footer class="pb-12 text-center">
       <button
-        class="px-8 py-4 bg-[#185D51] text-white text-xl font-bold rounded-full shadow-lg hover:bg-[#34CBAF] transition-all duration-300 transform hover:scale-105"
+        class="px-8 py-4 bg-[#185D51] text-white text-xl font-bold rounded-full shadow-lg hover:bg-[#26806f] transition-all duration-300 transform hover:scale-105"
         @click="iniciarMicrofono"
       >
         Sopla para apagar las velas
@@ -125,7 +161,35 @@ export default {
     return {
       velasEncendidas: [true, true], 
       escuchando: false,
-      stream: null
+      stream: null,
+      globosIzquierda: [
+        {
+          color: 'bg-red-400',
+          style: 'top: 210px; left: 0px; animation: balloon-float 3s ease-in-out infinite;'
+        },
+        {
+          color: 'bg-blue-400',
+          style: 'top: 230px; left: 8px; animation: balloon-float 3.5s ease-in-out infinite; animation-delay: 0.5s;'
+        },
+        {
+          color: 'bg-yellow-400',
+          style: 'top: 255px; left: -5px; animation: balloon-float 4s ease-in-out infinite; animation-delay: 1s;'
+        }
+      ],
+      globosDerecha: [
+        {
+          color: 'bg-pink-400',
+          style: 'top: 210px; right: 0px; animation: balloon-float 3.2s ease-in-out infinite; animation-delay: 0.2s;'
+        },
+        {
+          color: 'bg-green-400',
+          style: 'top: 230px; right: 8px; animation: balloon-float 3.8s ease-in-out infinite; animation-delay: 0.7s;'
+        },
+        {
+          color: 'bg-purple-400',
+          style: 'top: 255px; right: -3px; animation: balloon-float 4.2s ease-in-out infinite; animation-delay: 1.2s;'
+        }
+      ]
     };
   },
   methods: {
@@ -146,6 +210,7 @@ export default {
 
           if (volumen > 50) {
             this.velasEncendidas = this.velasEncendidas.map(() => false);
+            this.elevarGlobos();
             this.escuchando = false;
             this.stream.getTracks().forEach(t => t.stop());
           }
@@ -158,6 +223,19 @@ export default {
         alert("No se pudo acceder al micrófono 😢");
         console.error(err);
       }
+    },
+    elevarGlobos() {
+      // Animar globos izquierda hacia arriba
+      this.globosIzquierda = this.globosIzquierda.map((globo, index) => ({
+        ...globo,
+        style: `${globo.style} transform: translateY(-300px) translateX(${Math.random() * 40 - 20}px) rotate(${Math.random() * 20 - 10}deg); opacity: 0;`
+      }));
+      
+      // Animar globos derecha hacia arriba
+      this.globosDerecha = this.globosDerecha.map((globo, index) => ({
+        ...globo,
+        style: `${globo.style} transform: translateY(-300px) translateX(${Math.random() * 40 - 20}px) rotate(${Math.random() * 20 - 10}deg); opacity: 0;`
+      }));
     }
   }
 };
@@ -235,5 +313,13 @@ export default {
   0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
   50% { text-shadow: 2px 2px 12px rgba(0,0,0,0.5), 0 0 15px currentColor, 0 0 25px currentColor; }
   100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+}
+
+@keyframes balloon-float {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(1deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-2px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 </style>
