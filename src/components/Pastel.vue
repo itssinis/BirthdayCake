@@ -34,56 +34,98 @@
           </div>
         </div>
 
-        <!-- Velas -->
-        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 flex gap-12">
-          <div
-            v-for="(lit, i) in velasEncendidas"
-            :key="i"
-            class="relative"
-          >
-            <!-- Vela -->
-            <div class="w-3 h-14 bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-sm shadow-md border border-yellow-300"></div>
+        <!-- Velas con números 2 y 0 -->
+        <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 flex gap-6">
+          <!-- Número 2 -->
+          <div class="relative">
+            <!-- Vela número 2 con forma real de 2 -->
+            <div class="relative w-10 h-16">
+              <!-- Parte superior curva del 2 -->
+              <div class="absolute top-0 left-0 w-8 h-5 bg-gradient-to-b from-pink-200 to-pink-400 rounded-t-full border border-pink-300"></div>
+              <!-- Lado derecho superior -->
+              <div class="absolute top-3 right-0 w-2 h-4 bg-gradient-to-b from-pink-200 to-pink-400 border border-pink-300"></div>
+              <!-- Diagonal del 2 -->
+              <div class="absolute top-6 left-1 w-6 h-2 bg-gradient-to-b from-pink-200 to-pink-400 border border-pink-300 transform rotate-12"></div>
+              <!-- Lado izquierdo inferior -->
+              <div class="absolute top-9 left-0 w-2 h-4 bg-gradient-to-b from-pink-200 to-pink-400 border border-pink-300"></div>
+              <!-- Base del 2 -->
+              <div class="absolute bottom-0 left-0 w-8 h-3 bg-gradient-to-b from-pink-200 to-pink-400 border border-pink-300 rounded-b-lg"></div>
+            </div>
 
-            <!-- Llama -->
-            <div v-if="lit" class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <!-- Llama del número 2 -->
+            <div v-if="velasEncendidas[0]" class="absolute -top-6 left-1/2 transform -translate-x-1/2">
               <div class="relative">
                 <!-- Resplandor exterior -->
                 <div class="absolute inset-0 w-6 h-6 bg-orange-300 rounded-full blur-md opacity-40 animate-pulse" style="animation-duration: 1.5s;"></div>
                 <!-- Resplandor medio -->
                 <div class="absolute inset-0 w-4 h-5 bg-yellow-300 rounded-full blur-sm opacity-70 animate-pulse" style="animation-duration: 1.2s;"></div>
-                <!-- Llama principal con movimiento ondulante -->
+                <!-- Llama principal -->
                 <div
                   class="w-3 h-4 bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 rounded-full"
                   style="animation: flame-flicker 0.5s ease-in-out infinite alternate;"
                 ></div>
+                <!-- Llama interna azul -->
+                <div
+                  class="absolute top-1 left-1/2 w-1 h-2 bg-blue-400 rounded-full transform -translate-x-1/2"
+                  style="animation: flame-inner 0.7s ease-in-out infinite alternate;"
+                ></div>
+                <!-- Punto brillante -->
+                <div
+                  class="absolute top-0 left-1/2 w-1 h-1 bg-white rounded-full transform -translate-x-1/2"
+                  style="animation: sparkle 1s ease-in-out infinite;"
+                ></div>
               </div>
             </div>
 
-            <!-- Efecto de humo cuando se apaga -->
-            <div v-if="!lit" class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <!-- Humo del número 2 -->
+            <div v-if="!velasEncendidas[0]" class="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <div class="relative">
-                <!-- Múltiples líneas de humo con animación mejorada -->
+                <div class="w-0.5 h-8 bg-gradient-to-t from-gray-500 via-gray-300 to-transparent opacity-60" style="animation: smoke-rise 2.5s ease-out infinite;"></div>
+                <div class="absolute -left-1 top-2 w-0.5 h-6 bg-gradient-to-t from-gray-400 via-gray-200 to-transparent opacity-40" style="animation: smoke-rise 3s ease-out infinite; animation-delay: 0.3s;"></div>
+                <div class="absolute left-1 top-1 w-0.5 h-7 bg-gradient-to-t from-gray-500 via-gray-200 to-transparent opacity-50" style="animation: smoke-rise 2.8s ease-out infinite; animation-delay: 0.6s;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Número 0 -->
+          <div class="relative">
+            <!-- Vela número 0 simplificada -->
+            <div class="relative w-8 h-16 bg-gradient-to-b from-blue-200 to-blue-400 rounded-full border border-blue-300 shadow-md">
+              <!-- Hueco interior del 0 -->
+              <div class="absolute top-3 left-2 w-4 h-10 bg-[#C6F0E9] rounded-full"></div>
+            </div>
+
+            <!-- Llama del número 0 -->
+            <div v-if="velasEncendidas[1]" class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+              <div class="relative">
+                <!-- Resplandor exterior -->
+                <div class="absolute inset-0 w-6 h-6 bg-orange-300 rounded-full blur-md opacity-40 animate-pulse" style="animation-duration: 1.5s;"></div>
+                <!-- Resplandor medio -->
+                <div class="absolute inset-0 w-4 h-5 bg-yellow-300 rounded-full blur-sm opacity-70 animate-pulse" style="animation-duration: 1.2s;"></div>
+                <!-- Llama principal -->
                 <div
-                  class="w-0.5 h-8 bg-gradient-to-t from-gray-500 via-gray-300 to-transparent opacity-60"
-                  style="animation: smoke-rise 3s ease-out infinite;"
+                  class="w-3 h-4 bg-gradient-to-t from-orange-600 via-orange-400 to-yellow-300 rounded-full"
+                  style="animation: flame-flicker 0.5s ease-in-out infinite alternate;"
                 ></div>
+                <!-- Llama interna azul -->
                 <div
-                  class="absolute -left-1 top-2 w-0.5 h-6 bg-gradient-to-t from-gray-400 via-gray-200 to-transparent opacity-40"
-                  style="animation: smoke-rise 3.5s ease-out infinite; animation-delay: 0.4s;"
+                  class="absolute top-1 left-1/2 w-1 h-2 bg-blue-400 rounded-full transform -translate-x-1/2"
+                  style="animation: flame-inner 0.7s ease-in-out infinite alternate;"
                 ></div>
+                <!-- Punto brillante -->
                 <div
-                  class="absolute left-1 top-1 w-0.5 h-7 bg-gradient-to-t from-gray-500 via-gray-200 to-transparent opacity-50"
-                  style="animation: smoke-rise 2.8s ease-out infinite; animation-delay: 0.8s;"
+                  class="absolute top-0 left-1/2 w-1 h-1 bg-white rounded-full transform -translate-x-1/2"
+                  style="animation: sparkle 1s ease-in-out infinite;"
                 ></div>
-                <!-- Partículas de humo adicionales -->
-                <div
-                  class="absolute -left-0.5 top-4 w-0.5 h-4 bg-gradient-to-t from-gray-300 to-transparent opacity-30"
-                  style="animation: smoke-rise 4s ease-out infinite; animation-delay: 1.2s;"
-                ></div>
-                <div
-                  class="absolute left-0.5 top-3 w-0.5 h-5 bg-gradient-to-t from-gray-400 to-transparent opacity-35"
-                  style="animation: smoke-rise 3.2s ease-out infinite; animation-delay: 1.6s;"
-                ></div>
+              </div>
+            </div>
+
+            <!-- Humo del número 0 -->
+            <div v-if="!velasEncendidas[1]" class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <div class="relative">
+                <div class="w-0.5 h-8 bg-gradient-to-t from-gray-500 via-gray-300 to-transparent opacity-60" style="animation: smoke-rise 2.5s ease-out infinite;"></div>
+                <div class="absolute -left-1 top-2 w-0.5 h-6 bg-gradient-to-t from-gray-400 via-gray-200 to-transparent opacity-40" style="animation: smoke-rise 3s ease-out infinite; animation-delay: 0.3s;"></div>
+                <div class="absolute left-1 top-1 w-0.5 h-7 bg-gradient-to-t from-gray-500 via-gray-200 to-transparent opacity-50" style="animation: smoke-rise 2.8s ease-out infinite; animation-delay: 0.6s;"></div>
               </div>
             </div>
           </div>
@@ -107,7 +149,7 @@
 export default {
   data() {
     return {
-      velasEncendidas: [true, true, true],
+      velasEncendidas: [true, true], 
       escuchando: false,
       stream: null
     };
