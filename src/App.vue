@@ -1,13 +1,13 @@
 <template>
-  <Cake />
+  <Celebracion />
 </template>
 
 <script>
-import Cake from './components/Pastel.vue'
+import Celebracion from './components/Celebracion.vue';
 
 export default {
   components: {
-    Cake
+    Celebracion
   }
 }
 </script>

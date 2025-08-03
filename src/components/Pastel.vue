@@ -8,7 +8,7 @@
     </header>
 
     <!-- Centro: Pastel -->
-    <main class="flex-grow flex items-center justify-center">
+    <main class="flex-grow flex items-center justify-center ">
       <div class="relative">
         <!-- Plato base -->
         <div class="w-72 h-6 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full shadow-xl absolute -bottom-3 left-1/2 transform -translate-x-1/2 opacity-60"></div>
@@ -123,22 +123,24 @@
 
       <!-- Globitos decorativos -->
         <!-- Globitos lado izquierdo -->
-        <div class="absolute left-7 bottom-22">
+        <div class="absolute left-4 top-40 ">
           <div v-for="(globo, index) in globosIzquierda" :key="'izq-' + index" 
-               :class="['absolute w-10 h-12 rounded-full shadow-lg transition-all duration-1000', globo.color]"
+               :class="['absolute w-16 h-20 rounded-full shadow-lg transition-all duration-1000', globo.color]"
                :style="globo.style">
-            <!-- Hilo del globo -->
-            <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-400 opacity-60"></div>
+            <!-- Hilo del globo que va hacia el centro -->
+            <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-600 opacity-70"
+                 :style="globo.hiloStyle"></div>
           </div>
         </div>
 
         <!-- Globitos lado derecho -->
-        <div class="absolute right-7 bottom-22">
+        <div class="absolute right-4 top-40">
           <div v-for="(globo, index) in globosDerecha" :key="'der-' + index" 
-               :class="['absolute w-10 h-12 rounded-full shadow-lg transition-all duration-1000', globo.color]"
+               :class="['absolute w-16 h-20 rounded-full shadow-lg transition-all duration-1000', globo.color]"
                :style="globo.style">
-            <!-- Hilo del globo -->
-            <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gray-400 opacity-60"></div>
+            <!-- Hilo del globo que va hacia el centro -->
+            <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-600 opacity-70"
+                 :style="globo.hiloStyle"></div>
           </div>
         </div>
     </main>
@@ -165,29 +167,35 @@ export default {
       globosIzquierda: [
         {
           color: 'bg-red-400',
-          style: 'top: 210px; left: 0px; animation: balloon-float 3s ease-in-out infinite;'
+          style: 'top: -10px; left: 10px; animation: balloon-float 3s ease-in-out infinite;',
+          hiloStyle: 'height: 90px; transform-origin: top center; transform: translateX(-50%) rotate(12deg);'
         },
         {
           color: 'bg-blue-400',
-          style: 'top: 230px; left: 8px; animation: balloon-float 3.5s ease-in-out infinite; animation-delay: 0.5s;'
+          style: 'top: 35px; left: -10px; animation: balloon-float 3.5s ease-in-out infinite; animation-delay: 0.5s;',
+          hiloStyle: 'height: 90px; transform-origin: top center; transform: translateX(-50%) rotate(22deg);'
         },
         {
           color: 'bg-yellow-400',
-          style: 'top: 255px; left: -5px; animation: balloon-float 4s ease-in-out infinite; animation-delay: 1s;'
+          style: 'top: 70px; left: 8px; animation: balloon-float 4s ease-in-out infinite; animation-delay: 1s;',
+          hiloStyle: 'height: 60px; transform-origin: top center; transform: translateX(-50%) rotate(8deg);'
         }
       ],
       globosDerecha: [
         {
           color: 'bg-pink-400',
-          style: 'top: 210px; right: 0px; animation: balloon-float 3.2s ease-in-out infinite; animation-delay: 0.2s;'
+          style: 'top: -10px; right: 10px; animation: balloon-float 3.2s ease-in-out infinite; animation-delay: 0.2s;',
+          hiloStyle: 'height: 90px; transform-origin: top center; transform: translateX(-50%) rotate(-12deg);'
         },
         {
           color: 'bg-green-400',
-          style: 'top: 230px; right: 8px; animation: balloon-float 3.8s ease-in-out infinite; animation-delay: 0.7s;'
+          style: 'top: 35px; right: -10px; animation: balloon-float 3.8s ease-in-out infinite; animation-delay: 0.7s;',
+          hiloStyle: 'height: 90px; transform-origin: top center; transform: translateX(-50%) rotate(-18deg);'
         },
         {
           color: 'bg-purple-400',
-          style: 'top: 255px; right: -3px; animation: balloon-float 4.2s ease-in-out infinite; animation-delay: 1.2s;'
+          style: 'top: 70px; right: 8px; animation: balloon-float 4.2s ease-in-out infinite; animation-delay: 1.2s;',
+          hiloStyle: 'height: 60px; transform-origin: top center; transform: translateX(-50%) rotate(-8deg);'
         }
       ]
     };
@@ -212,6 +220,9 @@ export default {
             this.velasEncendidas = this.velasEncendidas.map(() => false);
             this.elevarGlobos();
             this.escuchando = false;
+            setTimeout(() => {
+              this.$emit('mostrar-carta')
+            }, 5000);
             this.stream.getTracks().forEach(t => t.stop());
           }
 
@@ -317,9 +328,9 @@ export default {
 
 @keyframes balloon-float {
   0% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-3px) rotate(1deg); }
+  25% { transform: translateY(-5px) rotate(2deg); }
   50% { transform: translateY(0) rotate(0deg); }
-  75% { transform: translateY(-2px) rotate(-1deg); }
+  75% { transform: translateY(-3px) rotate(-2deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
 </style>
