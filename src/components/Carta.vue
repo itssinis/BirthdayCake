@@ -1,33 +1,41 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-full min-h-screen bg-[#bcf1e7] relative overflow-hidden">
+  <div
+    class="flex flex-col items-center justify-center w-full min-h-screen bg-[#bcf1e7] relative p-4 lg:p-0"
+  >
+    <!-- Contenedor principal responsivo -->
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-6 w-full max-w-6xl">
+      
+      <!-- Imágenes izquierda -->
+      <div class="flex gap-3 lg:flex-col lg:gap-7 mb-4 lg:mb-0 lg:mx-12">
+        <img
+          v-for="(img, i) in imagenesIzquierda"
+          :key="i"
+          :src="img"
+          alt=""
+          class="w-20 sm:w-24 lg:w-[190px] h-auto animate-float"
+        />
+      </div>
 
-    <!-- Ilustraciones de la izquierda -->
-    <div class="absolute left-3 top-4 flex flex-col gap-7 p-10">
-      <img src="../assets/images/juntas.png" alt="Ilustración 1" class="w-40 h-auto animate-float" />
-      <img src="../assets/images/cine.png" alt="Ilustración 2" class="w-40 h-auto animate-float" />
-      <img src="../assets/images/flor.png" alt="Ilustración 3" class="w-40 h-auto animate-float" />
-    </div>
+      <!-- Sobre y carta -->
+      <div class="relative flex flex-col items-center w-full max-w-[600px]">
+        <img
+          :src="mostrarCarta ? sobreAbierto : sobreSellado"
+          class="w-full max-w-[600px] h-auto transition-all duration-500"
+        />
 
-    <div class="relative w-[600px] h-[450px] flex justify-center items-center">
-      <!-- Imagen del sobre -->
-      <img
-        :src="mostrarCarta ? sobreAbierto : sobreSellado"
-        class="w-full h-auto transition-all duration-500"
-      />
-
-      <!-- Carta -->
-      <div
+        <!-- Carta -->
+        <div
         v-if="mostrarCarta"
-        class="absolute top-[-90px] w-[570px] bg-white p-6 shadow-lg rounded-lg z-20 animate-aparecer"
+        class="absolute top-[-90px] w-[95%] max-w-[570px] bg-white p-6 shadow-lg rounded-lg z-20 animate-aparecer lg:max-h-[99vh] max-h-[70vh] overflow-y-auto"
       >
-        <!-- X de cerrar -->
-        <i
-          class="fa-solid fa-times absolute top-3 right-3 text-gray-500 hover:text-red-500 cursor-pointer"
-          @click="mostrarCarta = false"
-        ></i>
+          <!-- Botón cerrar -->
+          <i
+            class="fa-solid fa-times absolute top-3 right-3 text-gray-500 hover:text-red-500 cursor-pointer"
+            @click="mostrarCarta = false"
+          ></i>
 
-        <p class="text-gray-800 font-medium text-lg leading-relaxed">
-          Hola, mi amor.<br />
+          <p class="text-gray-800 font-medium text-lg leading-relaxed">
+          Hola, mi amor.<br /> 
           ¡Feliz cumpleaños! Bienvenida al segundo piso, espero hoy puedas pasar un día muy bonito, preciosa. Te amo, ¿lo sabías? 
           Agradezco demasiado el poder compartir mi vida contigo, y tengo la seguridad de que lo seguiremos haciendo por años. <br /><br />
           Has pasado 20 años siendo la mujer más increíble, hermosa, inteligente, adorable, tierna, valiente, de todo el universo 
@@ -40,102 +48,55 @@
           Te amo, con toda el alma. <br />
           Con amor, S.
         </p>
+        </div>
+
+        <!-- Botón abrir carta -->
+        <div class="mt-4">
+          <button
+            @click="mostrarCarta = true"
+            v-if="!mostrarCarta"
+            class="px-4 py-2 bg-[#185D51] text-white font-semibold rounded shadow hover:bg-[#26806f] transition text-sm sm:text-base"
+          >
+            Abrir carta
+          </button>
+        </div>
       </div>
+
+      <!-- Imágenes derecha -->
+      <div class="flex gap-3 lg:flex-col lg:gap-7 mt-4 lg:mt-0 lg:mx-12">
+    <img
+      v-for="(img, i) in imagenesDerecha"
+      :key="i"
+      :src="img"
+      alt=""
+      class="w-20 sm:w-24 lg:w-[190px] h-auto animate-float"
+    />
+  </div>
     </div>
-
-    <!-- Botones -->
-    <div class="mt-6 flex gap-4">
-      <button
-        @click="mostrarCarta = true"
-        v-if="!mostrarCarta"
-        class="px-4 py-2 bg-[#185D51] text-white font-semibold rounded shadow hover:bg-[#26806f] transition"
-      >
-        Abrir carta
-      </button>
-
-      <!-- Botón Ver álbum 
-      <button
-        @click="mostrarAlbum = true"
-        class="px-4 py-2 bg-[#185D51] text-white font-semibold rounded shadow hover:bg-[#26806f] transition"
-      >
-        Ver álbum
-      </button>-->
-
-    </div>
-
-    <!-- Ilustraciones de la derecha -->
-    <div class="absolute right-3 top-4 flex flex-col gap-7 p-10">
-      <img src="../assets/images/beso.png" alt="Ilustración 4" class="w-40 h-auto animate-float" />
-      <img src="../assets/images/caminando.png" alt="Ilustración 5" class="w-40 h-auto animate-float" />
-      <img src="../assets/images/dormida.png" alt="Ilustración 6" class="w-40 h-auto animate-float" />
-    </div>
-
-    <!-- Álbum modal 
-    <Album
-      v-if="mostrarAlbum"
-      :fotos="fotos"
-      @cerrar="cerrarAlbum"
-    />-->
-
   </div>
 </template>
 
 <script>
-import sobreSellado from '../assets/images/sobre-sellado.png';
-import sobreAbierto from '../assets/images/sobre-abierto.png';
-import Album from './Album.vue';
-
-//Rutas para las ilustraciones:
-import ilustracion1 from '../assets/images/juntas.png';
-import ilustracion2 from '../assets/images/cine.png';
-import ilustracion3 from '../assets/images/flor.png';
-import ilustracion4 from '../assets/images/beso.png';
-import ilustracion5 from '../assets/images/caminando.png';
-import ilustracion6 from '../assets/images/dormida.png';
-
-//Rutas para las fotos del álbum:
-
+import sobreSellado from "../assets/images/sobre-sellado.png";
+import sobreAbierto from "../assets/images/sobre-abierto.png";
+import ilustracion1 from "../assets/images/juntas.png";
+import ilustracion2 from "../assets/images/cine.png";
+import ilustracion3 from "../assets/images/flor.png";
+import ilustracion4 from "../assets/images/beso.png";
+import ilustracion5 from "../assets/images/caminando.png";
+import ilustracion6 from "../assets/images/dormida.png";
 
 export default {
-  components: { Album },
   data() {
     return {
       mostrarCarta: false,
-      mostrarAlbum: false, 
       sobreSellado,
       sobreAbierto,
-      fotos: [
-        {
-          tipo: 'texto',
-          contenido: '✨ Nuestros Momentos Especiales ✨'
-        },
-        {
-          tipo: 'texto', 
-          contenido: 'Aquí irán nuestras fotos favoritas...'
-        },
-        {
-          tipo: 'texto',
-          contenido: 'Cada imagen cuenta una historia única de nosotros.'
-        }
-      ], 
-      ilustraciones: [
-        { src: ilustracion1, pos: 'top-5 left-5', anim: 'animate-float' },
-        { src: ilustracion2, pos: 'top-10 right-10', anim: 'animate-float-delayed' },
-        { src: ilustracion3, pos: 'bottom-5 left-10', anim: 'animate-float' },
-        { src: ilustracion4, pos: 'bottom-10 right-5', anim: 'animate-float-delayed' },
-        { src: ilustracion5, pos: 'top-1/2 left-0 -translate-y-1/2', anim: 'animate-float' },
-        { src: ilustracion6, pos: 'top-1/2 right-0 -translate-y-1/2', anim: 'animate-float-delayed' },
-      ]
+      imagenesIzquierda: [ilustracion1, ilustracion2, ilustracion3],
+      imagenesDerecha: [ilustracion4, ilustracion5, ilustracion6],
     };
   },
-  methods: {
-    cerrarAlbum() {
-      console.log('Cerrando álbum...'); // Para debugging
-      this.mostrarAlbum = false;
-    }
-  }
 };
-
 </script>
 
 <style scoped>
@@ -153,16 +114,16 @@ export default {
   animation: aparecer 0.6s ease-out forwards;
 }
 
-/* Animación flotante */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
-.animate-float-delayed {
-  animation: float 4s ease-in-out infinite;
-  animation-delay: 2s;
-}
 </style>
+
