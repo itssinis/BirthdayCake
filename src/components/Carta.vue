@@ -126,3 +126,4 @@ export default {
   animation: float 4s ease-in-out infinite;
 }
 </style>
+
