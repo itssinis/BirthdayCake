@@ -125,10 +125,10 @@
         <!-- Globitos lado izquierdo -->
         <div class="absolute left-4 top-40 ">
           <div v-for="(globo, index) in globosIzquierda" :key="'izq-' + index" 
-               :class="['absolute w-8 sm:w-12 md:w-16 h-10 sm:h-16 md:h-20 rounded-full shadow-lg transition-all duration-1000', globo.color]"
+               :class="['absolute w-16 h-20 rounded-full shadow-lg transition-all duration-1000', globo.color]"
                :style="globo.style">
             <!-- Hilo del globo que va hacia el centro -->
-            <div class="absolute top-10 sm:top-16 md:top-20 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-600 opacity-70"
+            <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-600 opacity-70"
                  :style="globo.hiloStyle"></div>
           </div>
         </div>
@@ -136,10 +136,10 @@
         <!-- Globitos lado derecho -->
         <div class="absolute right-4 top-40">
           <div v-for="(globo, index) in globosDerecha" :key="'der-' + index" 
-               :class="['absolute w-8 sm:w-12 md:w-16 h-10 sm:h-16 md:h-20 rounded-full shadow-lg transition-all duration-1000', globo.color]"
+               :class="['absolute w-16 h-20 rounded-full shadow-lg transition-all duration-1000', globo.color]"
                :style="globo.style">
             <!-- Hilo del globo que va hacia el centro -->
-            <div class="absolute top-10 sm:top-16 md:top-20 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-600 opacity-70"
+            <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-600 opacity-70"
                  :style="globo.hiloStyle"></div>
           </div>
         </div>
