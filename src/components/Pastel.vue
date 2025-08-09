@@ -146,7 +146,7 @@
     </main>
 
     <!-- Botón abajo -->
-    <footer class="pb-[60%]  lg:pb-12 text-center">
+    <footer class="pb-[40%]  lg:pb-12 text-center">
       <button
         class="px-8 py-4 bg-[#185D51] text-white text-xl font-bold rounded-full shadow-lg hover:bg-[#26806f] transition-all duration-300 transform hover:scale-105"
         @click="iniciarMicrofono"
