@@ -45,34 +45,43 @@
         Abrir carta
       </button>
 
+      <!-- Botón Ver álbum -->
       <button
-        @click="abrirAlbum"
+        @click="mostrarAlbum = true"
         class="px-4 py-2 bg-[#185D51] text-white font-semibold rounded shadow hover:bg-[#26806f] transition"
       >
         Ver álbum
       </button>
+
     </div>
+
+    <Album
+      v-if="mostrarAlbum"
+      :fotos="fotos"
+      @cerrar="mostrarAlbum = false"
+    />
+
   </div>
 </template>
 
 <script>
 import sobreSellado from '../assets/images/sobre-sellado.png';
 import sobreAbierto from '../assets/images/sobre-abierto.png';
+import Album from './Album.vue';
 
 export default {
+  components: { Album },
   data() {
     return {
       mostrarCarta: false,
+      mostrarAlbum: false, 
       sobreSellado,
-      sobreAbierto
+      sobreAbierto,
+      fotos: [] 
     };
-  },
-  methods: {
-    abrirAlbum() {
-      alert('Aquí se abriría el álbum 📸');
-    }
   }
 };
+
 </script>
 
 <style scoped>
