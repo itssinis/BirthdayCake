@@ -154,3 +154,10 @@ button:focus-visible {
   font-weight: 700;
   font-style: italic;
 }
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 9999;
+}

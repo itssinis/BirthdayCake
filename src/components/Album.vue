@@ -3,10 +3,13 @@
     <div class="relative bg-white p-4 rounded-lg shadow-lg w-full max-w-[90vw] h-full max-h-[90vh] overflow-hidden">
       
       <!-- Botón cerrar -->
-      <i
-        class="fa-solid fa-times absolute top-2 right-2 text-gray-500 hover:text-red-500 cursor-pointer z-50"
-        @click="cerrarAlbum"
-      ></i>
+       <button>
+        <i
+          class="close-btn fa-solid fa-times absolute top-2 right-2 text-gray-500 hover:text-red-500 cursor-pointer z-50"
+          @click="cerrarAlbum"
+          title="Cerrar álbum"
+        ></i>
+      </button>
 
       <!-- Contenedor del álbum -->
       <div ref="album" class="album-container mx-auto"></div>
@@ -32,23 +35,41 @@ export default {
   },
   methods: {
     cerrarAlbum() {
-      this.destroyTurn();
-      this.$emit('cerrar');
+      console.log('Botón cerrar clickeado'); // Para debugging
+      try {
+        this.destroyTurn();
+        this.$emit('cerrar');
+      } catch (error) {
+        console.error('Error al cerrar álbum:', error);
+        this.$emit('cerrar'); // Emitir de todas formas
+      }
     },
+
+    /** Detecta si debe ir en single o double page */
     checkSinglePageMode() {
-      this.singlePageMode = window.innerWidth < 640; // menos de 640px → 1 página
+      const isPortrait = window.innerHeight > window.innerWidth;
+      const isSmallScreen = window.innerWidth < 768; // breakpoint tablet
+
+      // En portrait o pantallas pequeñas → single page
+      this.singlePageMode = isPortrait || isSmallScreen;
     },
+
+    /** Inicia el libro */
     initTurn() {
       const albumElement = window.$(this.$refs.album);
       albumElement.html('');
 
+      const pageWidth = Math.min(window.innerWidth * 0.9, 800);
+      const pageHeight = Math.min(window.innerHeight * 0.8, 600);
+
       albumElement.turn({
-        width: Math.min(window.innerWidth * 0.9, 800),
-        height: Math.min(window.innerHeight * 0.8, 600),
+        width: pageWidth,
+        height: pageHeight,
         autoCenter: true,
         display: this.singlePageMode ? 'single' : 'double'
       });
 
+      // Cargar páginas
       this.fotos.forEach((pagina, index) => {
         const page = document.createElement('div');
         page.classList.add('p-2', 'flex', 'items-center', 'justify-center');
@@ -99,11 +120,15 @@ export default {
         albumElement.turn('addPage', page, index + 1);
       });
     },
+
+    /** Elimina el libro para reiniciarlo */
     destroyTurn() {
       if (this.$refs.album && window.$(this.$refs.album).data('turn')) {
         window.$(this.$refs.album).turn('destroy').remove();
       }
     },
+
+    /** Recalcula en resize/orientación */
     handleResize() {
       this.checkSinglePageMode();
       this.destroyTurn();
@@ -114,9 +139,11 @@ export default {
     this.checkSinglePageMode();
     this.initTurn();
     window.addEventListener('resize', this.handleResize);
+    window.addEventListener('orientationchange', this.handleResize);
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('orientationchange', this.handleResize);
     this.destroyTurn();
   }
 };
@@ -127,8 +154,7 @@ export default {
   transition: all 0.3s ease;
 }
 
-/* En pantallas muy pequeñas */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .album-container {
     transform: scale(0.95);
     transform-origin: top center;

@@ -53,21 +53,15 @@
         Abrir carta
       </button>
 
-      <!-- Botón Ver álbum -->
+      <!-- Botón Ver álbum 
       <button
         @click="mostrarAlbum = true"
         class="px-4 py-2 bg-[#185D51] text-white font-semibold rounded shadow hover:bg-[#26806f] transition"
       >
         Ver álbum
-      </button>
+      </button>-->
 
     </div>
-
-    <Album
-      v-if="mostrarAlbum"
-      :fotos="fotos"
-      @cerrar="mostrarAlbum = false"
-    />
 
     <!-- Ilustraciones de la derecha -->
     <div class="absolute right-3 top-4 flex flex-col gap-7 p-10">
@@ -75,6 +69,13 @@
       <img src="../assets/images/caminando.png" alt="Ilustración 5" class="w-40 h-auto animate-float" />
       <img src="../assets/images/dormida.png" alt="Ilustración 6" class="w-40 h-auto animate-float" />
     </div>
+
+    <!-- Álbum modal 
+    <Album
+      v-if="mostrarAlbum"
+      :fotos="fotos"
+      @cerrar="cerrarAlbum"
+    />-->
 
   </div>
 </template>
@@ -103,7 +104,20 @@ export default {
       mostrarAlbum: false, 
       sobreSellado,
       sobreAbierto,
-      fotos: [], 
+      fotos: [
+        {
+          tipo: 'texto',
+          contenido: '✨ Nuestros Momentos Especiales ✨'
+        },
+        {
+          tipo: 'texto', 
+          contenido: 'Aquí irán nuestras fotos favoritas...'
+        },
+        {
+          tipo: 'texto',
+          contenido: 'Cada imagen cuenta una historia única de nosotros.'
+        }
+      ], 
       ilustraciones: [
         { src: ilustracion1, pos: 'top-5 left-5', anim: 'animate-float' },
         { src: ilustracion2, pos: 'top-10 right-10', anim: 'animate-float-delayed' },
@@ -113,6 +127,12 @@ export default {
         { src: ilustracion6, pos: 'top-1/2 right-0 -translate-y-1/2', anim: 'animate-float-delayed' },
       ]
     };
+  },
+  methods: {
+    cerrarAlbum() {
+      console.log('Cerrando álbum...'); // Para debugging
+      this.mostrarAlbum = false;
+    }
   }
 };
 
