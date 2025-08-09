@@ -6,15 +6,15 @@
     <div class="flex flex-col lg:flex-row items-center justify-center gap-6 w-full max-w-6xl">
       
       <!-- Imágenes izquierda -->
-      <div class="flex gap-3 lg:flex-col lg:gap-7 mb-4 lg:mb-0">
-    <img
-      v-for="(img, i) in imagenesIzquierda"
-      :key="i"
-      :src="img"
-      alt=""
-      class="w-20 sm:w-24 lg:w-40 h-auto animate-float"
-    />
-  </div>
+      <div class="flex gap-3 lg:flex-col lg:gap-7 mb-4 lg:mb-0 lg:mx-12">
+        <img
+          v-for="(img, i) in imagenesIzquierda"
+          :key="i"
+          :src="img"
+          alt=""
+          class="w-20 sm:w-24 lg:w-[190px] h-auto animate-float"
+        />
+      </div>
 
       <!-- Sobre y carta -->
       <div class="relative flex flex-col items-center w-full max-w-[600px]">
@@ -26,7 +26,7 @@
         <!-- Carta -->
         <div
         v-if="mostrarCarta"
-        class="absolute top-[-90px] w-[95%] max-w-[570px] bg-white p-6 shadow-lg rounded-lg z-20 animate-aparecer lg:max-h-[100vh] max-h-[70vh] overflow-y-auto"
+        class="absolute top-[-90px] w-[95%] max-w-[570px] bg-white p-6 shadow-lg rounded-lg z-20 animate-aparecer lg:max-h-[99vh] max-h-[70vh] overflow-y-auto"
       >
           <!-- Botón cerrar -->
           <i
@@ -63,13 +63,13 @@
       </div>
 
       <!-- Imágenes derecha -->
-      <div class="flex gap-3 lg:flex-col lg:gap-7 mt-4 lg:mt-0">
+      <div class="flex gap-3 lg:flex-col lg:gap-7 mt-4 lg:mt-0 lg:mx-12">
     <img
       v-for="(img, i) in imagenesDerecha"
       :key="i"
       :src="img"
       alt=""
-      class="w-20 sm:w-24 lg:w-40 h-auto animate-float"
+      class="w-20 sm:w-24 lg:w-[190px] h-auto animate-float"
     />
   </div>
     </div>
